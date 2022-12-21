@@ -1,0 +1,28 @@
+body {
+    background : white;
+    color : black;
+    max-width : 80%;
+    margin : auto;
+    font-family : sans-serif;
+}
+
+p {
+    line-height : 1.6;
+}
+
+article + article {
+    margin-top : 3rem;
+    padding-top : 3rem;
+    border-top : 1px solid grey;
+}
+
+
+a {
+    font-size: 2rem;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+    transition: 0.5s ease-in;
+}
