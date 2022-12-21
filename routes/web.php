@@ -13,6 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Route de landing page :
 Route::get('/', function () {
     return view('posts');
+});
+
+
+// Route pour accéder à un article sans slug :
+Route::get('post', function() {
+    $path = __DIR__ . '/../resources/posts/premier-article.html';
+    $post =  file_get_contents($path);
+    return view('post', [
+        'post' => $post
+    ]);
 });
