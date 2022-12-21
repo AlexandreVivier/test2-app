@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/blog.css" >
 
 <body>
-    <article><a href="/example/public/posts/premier-article">Mon premier article</a>
+    <article><a href="/posts/premier-article">Mon premier article</a>
     <p>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus, leo sed elementum lobortis, enim urna facilisis dolor, in ultrices magna tortor et risus. Curabitur dignissim porttitor mauris. Suspendisse sed dictum tortor. In bibendum neque ac risus malesuada, efficitur iaculis libero sollicitudin. Praesent pulvinar magna sed quam iaculis, sit amet euismod nulla volutpat. Etiam quis tortor vitae nulla suscipit dignissim. Cras volutpat convallis sem, ut interdum erat tristique volutpat. Quisque ultrices sed nibh ut scelerisque. In nec tortor suscipit, maximus lectus eu, dapibus metus. Sed vestibulum dignissim venenatis. Donec at mi vel dolor cursus posuere ac eget justo. Pellentesque suscipit sollicitudin erat, in consequat nibh tempor vel. Integer iaculis facilisis lorem, non convallis massa laoreet ut. Nulla neque lectus, tempor quis felis cursus, iaculis tristique sem. Aenean velit neque, interdum bibendum pellentesque eget, tempor eget elit.
