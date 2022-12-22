@@ -16,7 +16,14 @@ use Illuminate\Support\Facades\Route;
 
 //Route de landing page :
 Route::get('/', function () {
-    return view('posts');
+    // Aller récupérer l'intégralité des posts dans resources/posts
+    // En allant les prendre via l'objet Post
+    $posts = Post::all();
+// Si on ddd($posts) ici : on obtient un array de 3 objets car 3 articles, avec plein d'indices
+
+    return view('posts', [
+        'posts' => $posts
+    ]);
 });
 
 // Route avec le filesystem, code simplifié :
