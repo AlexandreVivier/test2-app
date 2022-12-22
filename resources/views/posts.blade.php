@@ -4,7 +4,12 @@
 <link rel="stylesheet" href="/blog.css" >
 
 <body>
-    <article><a href="/posts/premier-article">Mon premier article</a>
+    <?php foreach ($posts as $post) : ?>
+        <article>
+            <?= $post ?>
+        <article>
+          <?php  endforeach; ?>
+    <!-- <article><a href="/posts/premier-article">Mon premier article</a>
     <p>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi rhoncus, leo sed elementum lobortis, enim urna facilisis dolor, in ultrices magna tortor et risus. Curabitur dignissim porttitor mauris. Suspendisse sed dictum tortor. In bibendum neque ac risus malesuada, efficitur iaculis libero sollicitudin. Praesent pulvinar magna sed quam iaculis, sit amet euismod nulla volutpat. Etiam quis tortor vitae nulla suscipit dignissim. Cras volutpat convallis sem, ut interdum erat tristique volutpat. Quisque ultrices sed nibh ut scelerisque. In nec tortor suscipit, maximus lectus eu, dapibus metus. Sed vestibulum dignissim venenatis. Donec at mi vel dolor cursus posuere ac eget justo. Pellentesque suscipit sollicitudin erat, in consequat nibh tempor vel. Integer iaculis facilisis lorem, non convallis massa laoreet ut. Nulla neque lectus, tempor quis felis cursus, iaculis tristique sem. Aenean velit neque, interdum bibendum pellentesque eget, tempor eget elit.
@@ -38,4 +43,5 @@ Praesent feugiat mauris tortor, eget congue nunc ornare sit amet. Quisque lacini
 Vestibulum eleifend lectus at libero rhoncus pulvinar. Quisque tellus ex, porta sit amet nulla ut, consequat tempor lorem. Aliquam vel sapien felis. Donec condimentum mattis tellus, lobortis auctor dolor ultrices sit amet. Morbi consequat mauris in sapien porttitor, vel aliquam dolor lobortis. Sed luctus lacus urna, nec efficitur massa ullamcorper quis. Etiam tortor nisl, aliquet quis auctor eget, luctus vel turpis. Pellentesque lectus justo, porttitor sed lacinia eget, tincidunt nec dui. Mauris consectetur augue ante. Aliquam semper, nibh sit amet porttitor lacinia, risus purus dignissim ligula, eu suscipit est ante at ligula. Aliquam id ligula ac felis sodales posuere. Vivamus non dui sit amet augue congue scelerisque sit amet ac leo. Vestibulum viverra ipsum vitae lacus sollicitudin finibus in eget arcu. Nam ligula enim, scelerisque id auctor id, porta vel eros. Donec viverra justo risus, et scelerisque nisi ultrices a.
 
 Sed volutpat eget felis et ornare. Nullam tincidunt nec massa non volutpat. Nullam purus sem, bibendum id neque eget, pulvinar laoreet dolor. Pellentesque non dolor commodo, feugiat felis ac, ornare sem. Duis odio ligula, viverra vel sem vel, tincidunt venenatis nibh. Maecenas ultricies felis erat, quis aliquam purus scelerisque a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla eu faucibus odio. Donec justo arcu, sodales vel convallis ac, mollis at sem. Sed quis felis dapibus, finibus ante ut, fermentum lorem. Etiam pulvinar, mauris vitae mattis tempor, libero libero semper elit, et egestas magna dolor vitae metus. </p>
-</article></body>
+</article> -->
+</body>
