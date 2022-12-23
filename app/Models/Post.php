@@ -6,6 +6,24 @@ use Illuminate\Support\Facades\File;
 
 class Post 
 {
+
+    // prérequis pour les yaml front matter :
+    public $title;
+
+    public $excerpt;
+
+    public $date;
+
+    public $body;
+    
+    public function __construct($title, $excerpt, $date, $body)
+    {
+        $this->title = $title;
+        $this->excerpt = $excerpt;
+        $this->date = $date;
+        $this->body = $body;
+    }
+    
     // pour récupérer tous les posts dans resources/posts :
     public static function all()
     {
@@ -13,7 +31,7 @@ class Post
             $files = File::files(resource_path("posts"));
 
             //array_map() fonctionne comme une loop, mais return un nouvel array
-            // 1er argu :  callback 2nd argu : ce que tu boucles, passe dans le premier
+            // 1er argu :  la fonction à appliquer à 2nd argu : le tableau que tu passes dans le 1er
             return array_map(fn($file) => $file->getContents(), $files);
     }
 

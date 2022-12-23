@@ -16,6 +16,34 @@ use Illuminate\Support\Facades\Route;
 
 //Route de landing page :
 Route::get('/', function () {
+
+    // on récupère dans $files en array_map le contenu de chaque fichier dans "posts" :
+    $files = Files::files(ressource_path("posts"));
+    
+    // On fait un tableau pour contenir le résultat d'une future boucle
+    $posts = [];
+
+    // On boucle dessus :
+    foreach ($files as $file){
+        //A chaque passage, on récupère le contenu d'un fichier de 'posts'
+        $document = YamlFrontMatter::parseFile($file);
+        // on en fait une nouvelle instance dans l'array $posts (avec constructeur):
+        $posts[] = new Post(
+            $document->title,
+            $document->excerpt,
+            $document->date,
+            $document->body(),
+        );
+    }
+
+    return view('posts', [
+        'posts' => $posts
+    ]);
+});
+
+//Route de landing page, sans yaml front matter :
+/*
+Route::get('/', function () {
     // Aller récupérer l'intégralité des posts dans resources/posts
     // En allant les prendre via l'objet Post
     $posts = Post::all();
@@ -25,6 +53,7 @@ Route::get('/', function () {
         'posts' => $posts
     ]);
 });
+*/
 
 // Route avec le filesystem, code simplifié :
 Route::get('posts/{post}', function($slug) {
