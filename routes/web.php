@@ -2,6 +2,8 @@
 
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\File;
+use Spatie\YamlFrontMatter\parseFile;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +20,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
 
     // on récupère dans $files en array_map le contenu de chaque fichier dans "posts" :
-    $files = Files::files(ressource_path("posts"));
+    $files = File::files(resource_path("posts"));
     
     // On fait un tableau pour contenir le résultat d'une future boucle
     $posts = [];
