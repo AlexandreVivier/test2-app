@@ -16,32 +16,76 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-//Route de landing page :
+//Route de Landing Page avec les collections Laravel :
 Route::get('/', function () {
 
-    // on récupère dans $files en array_map le contenu de chaque fichier dans "posts" :
-    $files = File::files(resource_path("posts"));
-    
-    // On fait un tableau pour contenir le résultat d'une future boucle
-    $posts = [];
-
-    // On boucle dessus :
-    foreach ($files as $file){
-        //A chaque passage, on récupère le contenu d'un fichier de 'posts'
-        $document = YamlFrontMatter::parseFile($file);
-        // on en fait une nouvelle instance dans l'array $posts (avec constructeur):
-        $posts[] = new Post(
-            $document->title,
-            $document->excerpt,
-            $document->date,
-            $document->body(),
-        );
-    }
+    // tout est déjà dans post::all():
+    $posts = Post::all();
 
     return view('posts', [
         'posts' => $posts
     ]);
 });
+
+
+    // Version développée de la collection :
+    /*
+    // on récupère dans $files en array_map le contenu de chaque fichier dans "posts" :
+    $files = File::files(resource_path("posts"));
+    
+    // On utilise collect (ramasse un array et le met dans une collection d'objets):
+    // -> map est un array_map :
+    $posts = collect($files)
+    ->map(function ($file) {
+    //A chaque passage, on récupère le contenu d'un fichier de 'posts' :
+                return YamlFrontMatter::parseFile($file);
+        };
+    );
+    ->map(function ($document)
+                
+                // on en fait une nouvelle instance dans la collection $posts (avec constructeur):
+                return new Post(
+                    $document->title,
+                    $document->excerpt,
+                    $document->date,
+                    $document->body(),
+                    $document->slug,
+        );
+    });
+
+        return view('posts', [
+        'posts' => $posts
+    ]);
+});
+    */
+
+//Route de landing page (approche "propre" du yamlFrontMatter avec array_map()):
+/*
+Route::get('/', function () {
+
+    // on récupère dans $files en array_map le contenu de chaque fichier dans "posts" :
+    $files = File::files(resource_path("posts"));
+    
+    // Comme on aura besoin de mettre le résultat d'une boucle dans un array : array_map()
+    // Chaque indice de l'array contiendra un objet.
+    $posts = array_map(function ($file) {
+        //A chaque passage, on récupère le contenu d'un fichier de 'posts' :
+        $document = YamlFrontMatter::parseFile($file);
+        // on en fait une nouvelle instance dans l'array $posts (avec constructeur):
+        return new Post(
+            $document->title,
+            $document->excerpt,
+            $document->date,
+            $document->body(),
+            $document->slug,
+        );
+    } ,$files);
+
+    return view('posts', [
+        'posts' => $posts
+    ]);
+});
+*/
 
 //Route de landing page, sans yaml front matter :
 /*
