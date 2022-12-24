@@ -41,7 +41,9 @@ class Post
                     $document->date,
                     $document->body(),
                     $document->slug,
-        ));
+        ))
+        ->sortByDesc('date');
+
         /* Ancienne version :       
             //on extrait les files via facades :
             $files = File::files(resource_path("posts"));
