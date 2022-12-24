@@ -7,9 +7,14 @@
     <?php foreach ($posts as $post) : ?>
         <article>
             <h1>
-                <?= $post->title ?>
+                    <a href="/posts/<?= $post->slug ?>">
+                        <?= $post->title ?>
+                    </a>
             </h1>
-        <article>
+            <p>
+                <?= $post->excerpt ?>
+            </p>
+        </article>
           <?php  endforeach; ?>
     <!-- <article><a href="/posts/premier-article">Mon premier article</a>
     <p>
