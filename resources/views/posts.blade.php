@@ -1,21 +1,19 @@
-<!doctype html>
+@extends('layout')
 
-<title>Mon Blog</title>
-<link rel="stylesheet" href="/blog.css" >
-
-<body>
-    @foreach ($posts as $post)
-        <article>
-            <h1>
+    @section('content')
+        @foreach ($posts as $post)
+             <article>
+                <h1>
                     <a href="/posts/{{ $post->slug }}">
                         {{ $post->title }}
                     </a>
-            </h1>
-            <p>
-                {{ $post->excerpt }}  
-            </p>
-        </article>
-    @endforeach
+                </h1>
+                <p>
+                   {{ $post->excerpt }}  
+                </p>
+          </article>
+         @endforeach
+    @endsection
     <!-- <article><a href="/posts/premier-article">Mon premier article</a>
     <p>
 
@@ -51,4 +49,3 @@ Vestibulum eleifend lectus at libero rhoncus pulvinar. Quisque tellus ex, porta 
 
 Sed volutpat eget felis et ornare. Nullam tincidunt nec massa non volutpat. Nullam purus sem, bibendum id neque eget, pulvinar laoreet dolor. Pellentesque non dolor commodo, feugiat felis ac, ornare sem. Duis odio ligula, viverra vel sem vel, tincidunt venenatis nibh. Maecenas ultricies felis erat, quis aliquam purus scelerisque a. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla eu faucibus odio. Donec justo arcu, sodales vel convallis ac, mollis at sem. Sed quis felis dapibus, finibus ante ut, fermentum lorem. Etiam pulvinar, mauris vitae mattis tempor, libero libero semper elit, et egestas magna dolor vitae metus. </p>
 </article> -->
-</body>
