@@ -31,18 +31,21 @@ class Post
     // pour récupérer tous les posts dans resources/posts :
     public static function all()
     {
-        // On utilise collect (ramasse un array et le met dans une collection d'objets):
-        return collect(File::files(resource_path("posts")))
-         // -> map est la fonction array_map de la collection :
-        ->map(fn ($file) => YamlFrontMatter::parseFile($file))
-        ->map(fn ($document) => new Post(
-                    $document->title,
-                    $document->excerpt,
-                    $document->date,
-                    $document->body(),
-                    $document->slug,
-        ))
-        ->sortByDesc('date');
+   // Pour des questions d'économie, on met ce bloc function en cache :
+        return cache()->rememberForever('posts.all', function() {
+    // On utilise collect (ramasse un array et le met dans une collection d'objets):
+             return collect(File::files(resource_path("posts")))
+     // -> map est la fonction array_map de la collection :
+                    ->map(fn ($file) => YamlFrontMatter::parseFile($file))
+                    ->map(fn ($document) => new Post(
+                        $document->title,
+                        $document->excerpt,
+                        $document->date,
+                        $document->body(),
+                        $document->slug,
+                    ))
+                ->sortByDesc('date');
+        });
 
         /* Ancienne version :       
             //on extrait les files via facades :
