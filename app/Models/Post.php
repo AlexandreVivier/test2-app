@@ -61,12 +61,15 @@ class Post
     // methode find() pour trouver selon le slug
     public static function find($slug)
     {
-        //Nouvelle méthode, avec collection (episode 12):
-
-        $post = static::all();
+        // en inline :
+        return static::all()->firstWhere('slug', $slug);
+        //En détaillé, avec collection (episode 12):
+        /*$post = static::all();
         // $post est une collection désormais :
+//cherche le first qui match :
+         $post->firstWhere('slug', $slug);
+*/
 
-        return $post->firstWhere('slug', $slug);
         /* Ancienne méthode, sans collection :
         // Définir le chemin d'accès contenu par le slug pour le passer dans la vue ($path)
         // vérifier que le chemin/slug existe sinon rediriger :
@@ -80,5 +83,15 @@ class Post
         // stocker dans le cache 20min pour éviter de surcharger la méthode :
         return cache()->remember("posts.{$slug}", now()->addMinutes(20), fn () => file_get_contents($path));
         */
+    }
+
+    public static function findOrFail($slug) 
+    {
+        $post = static::find($slug);
+        if (! $post) {
+            throw new ModelNotFoundException();
+        }
+
+        return $post;
     }
 }
