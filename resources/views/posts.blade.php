@@ -1,6 +1,5 @@
-@extends('layout')
-
-    @section('content')
+<x-layout>
+    <x-slot name="content">
         @foreach ($posts as $post)
              <article>
                 <h1>
@@ -13,7 +12,8 @@
                 </p>
           </article>
          @endforeach
-    @endsection
+    </x-slot>
+</x-layout>
     <!-- <article><a href="/posts/premier-article">Mon premier article</a>
     <p>
 
