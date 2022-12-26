@@ -108,7 +108,7 @@ Route::get('posts/{post}', function($slug) {
     // Soit la méthode find par le $slug de la classe Post devient la variable $post.
 // (penser à l'importer en haut du doc via USE)
 
-    $post = Post::find($slug);
+    $post = Post::findOrFail($slug);
 
     return view('post', [
         'post' => $post
@@ -117,7 +117,9 @@ Route::get('posts/{post}', function($slug) {
     // return view('post',[
         //'post' => Post::find($slug)
 //    ]);
-})->where('post', '[A-z_\-]+');
+});
+// on peut virer ça une fois le site rodé :
+//->where('post', '[A-z_\-]+');
 
 
 // Route pour accéder à un article avec Slug et Regex + Caching :
