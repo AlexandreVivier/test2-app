@@ -1,6 +1,6 @@
-@extends('layout')
+<x-layout>
+    <x-slot name="content">
 
-    @section('content')
         <article> 
             <h1>
                 {{ $post->title }}
@@ -11,5 +11,6 @@
              </p>
         </article>  
         <a href="/">Retour</a>
-    @endsection
-   
+
+    </x-slot>
+</x-layout>
