@@ -102,7 +102,7 @@ Route::get('/', function () {
 */
 
 // Route avec le filesystem, code simplifié :
-Route::get('posts/{post}', function($slug) {
+Route::get('posts/{post}', function ($slug) {
    
     // On assainit le code en passant par la classe Post pour y mettre les méthodes de caching
     // Soit la méthode find par le $slug de la classe Post devient la variable $post.
