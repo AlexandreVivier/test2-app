@@ -102,15 +102,15 @@ Route::get('/', function () {
 */
 
 // Route avec le filesystem, code simplifié :
-Route::get('posts/{post}', function ($id) {
+Route::get('posts/{post:slug}', function (Post $post) {// Post::where('slug', $post)->firstOrFail();
    
     // On assainit le code en passant par la classe Post pour y mettre les méthodes de caching
     // Soit la méthode find par le $slug de la classe Post devient la variable $post.
 // (penser à l'importer en haut du doc via USE)
 
-    $post = Post::findOrFail($id);
-
-    return view('post', [
+  //  $post = Post::findOrFail($id);
+// Route model binding. Plus besoin de cette ligne
+    return view('post', [ 
         'post' => $post
     ]);
 // En inline, cela donnerait :
