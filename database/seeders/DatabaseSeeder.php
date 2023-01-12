@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-         \App\Models\User::factory(1)->create();
+         //\App\Models\User::factory(1)->create();
 
         /* \App\Models\User::factory()->create([
              'name' => 'Test User',
@@ -22,11 +22,12 @@ class DatabaseSeeder extends Seeder
          ]);
         */
 
-       /* \App\Models\User::create([
-            'name'=> 'Personal',
-            'slug'=>'personal'
+        \App\Models\User::create([
+            'name'=> 'Auteur',
+            'email'=>'personal@internet.com',
+            'password'=>'topSecret'
          ]);
-*/
+
          \App\Models\Category::create([
             'name'=> 'Personal',
             'slug'=>'personal'
