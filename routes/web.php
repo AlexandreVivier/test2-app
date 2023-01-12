@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Post;
+use App\Models\Category;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
 use Spatie\YamlFrontMatter\YamlFrontMatter;
@@ -186,3 +187,11 @@ Route::get('post', function() {
     ]);
 });
 */
+
+// Afficher les catégories :
+
+Route::get('categories/{category:slug}', function (Category $category) {
+    return view('posts', [
+        'posts' => $category->posts,
+    ]);
+} );
