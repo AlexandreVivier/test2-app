@@ -21,10 +21,10 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 Route::get('/', function () {
 
     // tout est déjà dans post::all():
-    $posts = Post::all();
+    //$posts = Post::all();
 
     return view('posts', [
-        'posts' => $posts
+        'posts' => Post::with('category')->get()
     ]);
 });
 
