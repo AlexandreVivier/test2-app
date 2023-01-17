@@ -18,6 +18,8 @@ class Post extends Model
     //typiquement, on peut laisser $guarded =[]; vide si on est assez certain
     //de son mass assign
 
+    protected $with = ['category', 'author'];
+
     public function category()
     {
         return $this->belongsTo(category::class);
