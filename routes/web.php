@@ -25,7 +25,8 @@ Route::get('/', function () {
     //$posts = Post::all();
 
     return view('posts', [
-        'posts' => Post::latest()->get()
+        'posts' => Post::latest()->get(),
+        'categories' => Category::all()
         // Dans post.php, on a mis $with.
         // On peut donc virer Post::latest()->with('category', 'author')->get()
     ]);
@@ -58,6 +59,8 @@ Route::get('categories/{category:slug}', function (Category $category) {
         'posts' => $category->posts,
         // Dans post.php, on a mis $with.
         // On peut donc virer $category->posts->load(['category', 'author']),
+        'currentCategory'=> $category,
+        'categories'=>Category::all(),
     ]);
 } );
 
@@ -66,5 +69,6 @@ Route::get('authors/{author:username}', function (User $author) {
         'posts' => $author->posts,
         // Dans post.php, on a mis $with.
         // On peut donc virer $author->posts->load(['category', 'author']),
+        'categories'=>Category::all(),
     ]);
 } );
