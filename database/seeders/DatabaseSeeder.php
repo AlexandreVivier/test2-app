@@ -20,14 +20,20 @@ class DatabaseSeeder extends Seeder
          \App\Models\Category::truncate();
          \App\Models\Post::truncate();
 
-         $user = \App\Models\User::factory()->create([
+         /*$user = \App\Models\User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
-        ]); 
+        ]);*/
+        
+        \App\Models\User::factory()->create();
 
-         \App\Models\Post::factory(5)->create([
+        \App\Models\Category::factory()->create();
+
+         /*\App\Models\Post::factory(12)->create([
             'user_id' => $user->id
-         ]);
+         ]);*/
+         \App\Models\Post::factory()->create();
+
 
         /* \App\Models\User::factory()->create([
              'name' => 'Test User',
