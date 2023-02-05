@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
@@ -18,61 +19,29 @@ use Spatie\YamlFrontMatter\YamlFrontMatter;
 |
 */
 
-//Route de Landing Page avec les collections Laravel :
-Route::get('/', function () {
+//Homepage :
 
-    $posts = Post::latest();
+Route::get('/', [PostController::class, 'index'] )->name('home');
 
-    if (request('search')) {
-        $posts
-        ->where('title', 'like', '%' . request('search') . '%')
-        ->orWhere('body', 'like', '%' . request('search') . '%');
-    }
+//Afficher le post *wildcard :
 
-    return view('posts', [
-        'posts' => $posts->get(),
-        'categories' => Category::all()
-
-    ]);
-});
-
-
-
-
-// Route avec le filesystem, code simplifié :
-Route::get('posts/{post:slug}', function (Post $post) {// Post::where('slug', $post)->firstOrFail();
-   
-    // On assainit le code en passant par la classe Post pour y mettre les méthodes de caching
-    // Soit la méthode find par le $slug de la classe Post devient la variable $post.
-// (penser à l'importer en haut du doc via USE)
-
-  //  $post = Post::findOrFail($id);
-// Route model binding. Plus besoin de cette ligne
-    return view('post', [ 
-        'post' => $post
-    ]);
-});
-
-
-
+Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 // Afficher les catégories :
 
 Route::get('categories/{category:slug}', function (Category $category) {
     return view('posts', [
         'posts' => $category->posts,
-        // Dans post.php, on a mis $with.
-        // On peut donc virer $category->posts->load(['category', 'author']),
         'currentCategory'=> $category,
         'categories'=>Category::all(),
     ]);
 } );
 
+// Afficher les posts selon auteurs
+
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [
         'posts' => $author->posts,
-        // Dans post.php, on a mis $with.
-        // On peut donc virer $author->posts->load(['category', 'author']),
         'categories'=>Category::all(),
     ]);
 } );

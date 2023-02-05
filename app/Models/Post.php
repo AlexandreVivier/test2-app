@@ -19,6 +19,20 @@ class Post extends Model
     //de son mass assign
 
     protected $with = ['category', 'author'];
+    
+    public function scopeFilter($query, array $filters) //Post::newQuery()->filter() C'est ce qu'on appelle une queryScope. Le terme scope est obligatoire avant.
+    {
+        //$query->where()
+
+        $query->when($filters['search'] ?? false, function ($query, $search) {// '??' au cas ou il y ait un search NULL
+            $query
+            ->where('title', 'like', '%' . $search . '%')
+            ->orWhere('body', 'like', '%' . $search . '%')
+            ->orWhere('excerpt', 'like', '%' . $search . '%');
+        });
+   
+
+    }
 
     public function category()
     {
@@ -29,4 +43,6 @@ class Post extends Model
     {
         return $this->belongsTo(user::class, 'user_id');
     }
+
+
 }
