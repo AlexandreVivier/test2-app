@@ -22,9 +22,11 @@ class PostFactory extends Factory
             'user_id'=> User::factory(),
             'category_id'=> Category::factory(),
             'title' => fake()->sentence(),
-            'excerpt' => fake()->sentence(),
-            'body' => fake()->paragraph(),
+            'excerpt' => fake()->paragraph(),
+            'body' =>  fake()->paragraph(),
             'slug'=> fake()->slug()
         ];
     }
 }
+
+
