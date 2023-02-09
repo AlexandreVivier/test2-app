@@ -30,6 +30,15 @@ class Post extends Model
             ->orWhere('body', 'like', '%' . $search . '%')
             ->orWhere('excerpt', 'like', '%' . $search . '%');
         });
+
+        
+        $query->when($filters['category'] ?? false, fn ($query, $category) => // $category = la variable du champ de recherche.
+            $query->whereExists(fn($query) =>
+            $query->from('categories')
+            ->whereColumn('categories.id', 'posts.category_id')
+            ->where('categories.slug', $category))
+        );
+
    
 
     }
