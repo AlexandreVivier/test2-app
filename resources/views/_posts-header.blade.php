@@ -36,14 +36,14 @@
                         @foreach($categories as $category)
 
                         {{--   {{  ? 'bg-blue-500 text-white' : '' }}" --}}
-                        <x-dropdown-item href="/categories/{{ $category->slug }}"
-                        :active="isset($currentCategory) && $currentCategory->id === $category->id"
+                        <x-dropdown-item href="/?category={{ $category->slug }}"
+                        :active='request()->is("categories/{$category->slug}")'
                         >{{ ucwords($category->name) }}
                             </x-dropdown-item>
                         @endforeach
                     </x-dropdown>
 
-                   
+                   <!--   :active='"isset($currentCategory) && $currentCategory->id === $category->id"' DEVIENT :active='request()->is("categories/{$category->slug}")'WTF ??? --> 
                 </div>
 
                 <!-- Other Filters -->
