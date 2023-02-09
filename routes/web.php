@@ -29,13 +29,8 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 // Afficher les catégories :
 
-Route::get('categories/{category:slug}', function (Category $category) {
-    return view('posts', [
-        'posts' => $category->posts,
-        'currentCategory'=> $category,
-        'categories'=>Category::all(),
-    ]);
-} );
+//Est désormais transféré dans le PostController::index()
+
 
 // Afficher les posts selon auteurs
 
