@@ -1,12 +1,14 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+/*
+obsolete :
 use App\Models\Post;
 use App\Models\Category;
 use App\Models\User;
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\File;
-use Spatie\YamlFrontMatter\YamlFrontMatter;
+use Spatie\YamlFrontMatter\YamlFrontMatter;*/
 
 /*
 |--------------------------------------------------------------------------
@@ -27,14 +29,18 @@ Route::get('/', [PostController::class, 'index'] )->name('home');
 
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
+
+
 // Afficher les catégories :
 //Est désormais transféré dans le PostController::index()
 
 
-// Afficher les posts selon auteurs
-
+// Afficher les posts selon auteurs :
+/*
 Route::get('authors/{author:username}', function (User $author) {
-    return view('posts', [
+    return view('posts.index', [
         'posts' => $author->posts,
     ]);
 } );
+
+OBSOLETE ^^ */
