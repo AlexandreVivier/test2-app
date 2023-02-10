@@ -13,20 +13,18 @@ class PostController extends Controller
 
     public function index() 
     {
-        return view('posts', [
-            'posts' => Post::latest()->filter(request(['search', 'category']))->get(), // en array pour Post::$filter ensuite
-            'categories' => Category::all(),
-            'currentCategory' => Category::firstWhere('slug', request('category')) //Show first category where the slug matches up
-    
+        return view('posts.index', [
+            'posts' => Post::latest()->filter(request(['search', 'category', 'author']))->get(), // en array pour Post::$filter ensuite    
         ]);
     }
 
     // Function pour afficher un post :
     public function show(Post $post)
     {
-        return view('post', [ 
+        return view('posts.show', [ 
             'post' => $post
         ]);
     }
 
 }
+// nommer ses fonctions selon le sujet.l'action : fn index('posts.index')

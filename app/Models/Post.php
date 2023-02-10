@@ -41,6 +41,16 @@ class Post extends Model
                 //	SELECT * FROM `posts` WHERE exists (SELECT * FROM `categories` WHERE `posts`.`category_id` = `categories`.`id` and `slug` = 'LOREMIPSUM') ORDER BY `created_at` DESC
         );
 
+        $query->when($filters['author'] ?? false, fn ($query, $author) => // $category = la variable du champ de recherche.
+        $query->whereHas('author', fn($query) => 
+            $query->where('username', $author))
+            // "Post, give me the one which has category, specifically the one
+            // with category.slug matches the one we've passed in browser"
+
+            //	SELECT * FROM `posts` WHERE exists (SELECT * FROM `categories` WHERE `posts`.`category_id` = `categories`.`id` and `slug` = 'LOREMIPSUM') ORDER BY `created_at` DESC
+    );
+
+
    
 
     }
