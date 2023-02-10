@@ -28,7 +28,6 @@ Route::get('/', [PostController::class, 'index'] )->name('home');
 Route::get('posts/{post:slug}', [PostController::class, 'show']);
 
 // Afficher les catégories :
-
 //Est désormais transféré dans le PostController::index()
 
 
@@ -37,6 +36,5 @@ Route::get('posts/{post:slug}', [PostController::class, 'show']);
 Route::get('authors/{author:username}', function (User $author) {
     return view('posts', [
         'posts' => $author->posts,
-        'categories'=>Category::all(),
     ]);
 } );
