@@ -25,10 +25,10 @@ class Post extends Model
         //$query->where()
 
         $query->when($filters['search'] ?? false, function ($query, $search) {// '??' au cas ou il y ait un search NULL
-            $query
-            ->where('title', 'like', '%' . $search . '%')
-            ->orWhere('body', 'like', '%' . $search . '%')
-            ->orWhere('excerpt', 'like', '%' . $search . '%');
+            $query->where(fn($query) =>
+                $query->where('title', 'like', '%' . $search . '%')
+                ->orWhere('body', 'like', '%' . $search . '%')
+                ->orWhere('excerpt', 'like', '%' . $search . '%'));
         });
 
         
