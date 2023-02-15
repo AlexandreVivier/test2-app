@@ -15,9 +15,6 @@
         </article>  
         <a href="/">Retour</a>
 
-    </x-slot>
-
-    <x-slot name="comments">
         <table>
             <thead>
                 <td><th colspan="3">Commentaires :</th></td>
@@ -27,13 +24,13 @@
                     <td><th>DATE :</th></td>
                 </tr>
             </thead>
-        @foreach ($comments as $comment)
-            <tr>
-                <td>{{ $comment->author->username }}</td>
-                <td>{{ $comment->body }}</td>
-                <td>{{ $comment->date }}</td>
-            </tr>
-        @endforeach
+            @foreach ($comments as $comment)
+<tr>
+    <td>{{ $comment->author->username }}</td>
+    <td>{{ $comment->body }}</td>
+    <td>{{ $comment->date }}</td>
+</tr>
+@endforeach
         </table>
     </x-slot>
 </x-layout>

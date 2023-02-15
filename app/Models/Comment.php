@@ -9,6 +9,8 @@ class Comment extends Model
 {
     use HasFactory;
 
+    protected $with = ['category', 'author'];
+
     public function author()
     {
         return $this->belongsTo(user::class, 'user_id');
@@ -19,3 +21,5 @@ class Comment extends Model
         return $this->belongsTo(Post::class, 'post_id');
     }
 }
+
+
