@@ -22,7 +22,9 @@
                             @foreach($categories as $category)
 
                             {{--   {{  ? 'bg-blue-500 text-white' : '' }}" --}}
-                            <x-dropdown-item href="/?category={{ $category->slug }}"
+
+                            {{-- http_build_query change un array en query string. Request() récupère la requete de catégory et except vire le mot pour éviter doublon --}}
+                            <x-dropdown-item href="/?category={{ $category->slug }}&{{ http_build_query(request()->except('category')) }}"
                             :active='request()->is("categories/{$category->slug}")'
                             >{{ ucwords($category->name) }}
                                 </x-dropdown-item>
